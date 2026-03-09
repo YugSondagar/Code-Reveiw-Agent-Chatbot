@@ -60,38 +60,32 @@ This project is designed with **industry-level architecture**, making it ideal f
 
 ## 📁 Project Structure
 
-```text
 code-review-agent/
-│
 ├── backend/
-│   ├── app.py                  # Flask app entry point
-│   │
-│   ├── routes/
-│   │   └── review.py            # API routes for code review
-│   │
-│   ├── services/
-│   │   ├── ollama_client.py     # Ollama API integration
-│   │   ├── code_analyzer.py     # LLM prompt + response logic
-│   │   └── static_analysis.py   # pylint, bandit, radon
-│   │
-│   ├── utils/
-│   │   ├── language_detect.py   # Auto-detect programming language
-│   │   ├── chunker.py           # Large code chunking
-│   │   └── formatter.py         # Structured output formatter
-│   │
-│   ├── prompts/
-│   │   └── review_prompt.txt    # Professional review prompt
-│   │
+│   ├── app.py
+│   ├── config.py
 │   ├── requirements.txt
-│   └── config.py
-│
-├── frontend/                    # Optional (HTML / React)
-│
-├── samples/                     # Sample code for testing
-├── README.md
-└── .gitignore
-```
-
+│   ├── .env
+│   ├── routes/
+│   │   └── review.py
+│   ├── services/
+│   │   ├── ollama_client.py
+│   │   ├── code_analyzer.py
+│   │   ├── static_analysis.py
+│   │   └── chat_service.py
+│   ├── utils/
+│   │   ├── language_detect.py
+│   │   ├── chunker.py
+│   │   └── formatter.py
+│   └── prompts/
+│       └── review_prompt.txt
+├── frontend/
+│   ├── index.html
+│   ├── styles.css
+│   ├── script.js
+│   └── assets/
+└── samples/
+    └── sample_codes/
 ---
 
 ## ⚙️ Installation & Setup

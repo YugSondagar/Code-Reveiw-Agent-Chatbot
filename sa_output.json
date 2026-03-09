@@ -1,0 +1,51 @@
+{
+  "bugs": [],
+  "security": [],
+  "complexity": [],
+  "style": [
+    {
+      "description": "Line 5: Using print() - consider using logging for production code",
+      "severity": "low",
+      "line": 5
+    },
+    {
+      "description": "Line 1: Missing module docstring (C0114)",
+      "severity": "low",
+      "line": 1
+    },
+    {
+      "description": "Line 1: Missing function or method docstring (C0116)",
+      "severity": "low",
+      "line": 1
+    },
+    {
+      "description": "Line 2: Use of eval (W0123)",
+      "severity": "medium",
+      "line": 2
+    },
+    {
+      "description": "Line 3: Variable name \"x\" doesn't conform to snake_case naming style (C0103)",
+      "severity": "low",
+      "line": 3
+    },
+    {
+      "description": "Line 4: Variable name \"x\" doesn't conform to snake_case naming style (C0103)",
+      "severity": "low",
+      "line": 4
+    },
+    {
+      "description": "Line 3: Unused variable 'x' (W0612)",
+      "severity": "medium",
+      "line": 3
+    }
+  ],
+  "metrics": {
+    "line_count": 6,
+    "code_line_count": 5,
+    "character_count": 67,
+    "empty_line_count": 1,
+    "function_count": 1,
+    "class_count": 0
+  },
+  "warnings": []
+}

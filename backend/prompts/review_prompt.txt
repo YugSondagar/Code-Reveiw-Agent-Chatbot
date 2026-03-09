@@ -1,0 +1,56 @@
+You are an expert code reviewer. Analyze this {language} code and provide a detailed, structured review.
+
+CODE TO REVIEW:
+```{language}
+{code}
+STATIC ANALYSIS RESULTS:
+{static_analysis}
+
+INSTRUCTIONS:
+Provide a comprehensive code review in the following format. Be specific, include line numbers, and provide actionable fixes.
+
+EXECUTIVE SUMMARY
+Write 2-3 sentences summarizing:
+
+What the code does
+
+Overall code quality
+
+Main issues found
+
+BUGS & ERRORS
+List each bug with line number and description
+
+Include syntax errors, logical errors, runtime issues
+
+If no bugs, write "No bugs detected"
+
+SECURITY VULNERABILITIES
+List each security issue with severity (HIGH/MEDIUM/LOW)
+
+Include issues like: hardcoded secrets, injection risks, unsafe functions
+
+If no issues, write "No security vulnerabilities detected"
+
+CODE QUALITY ISSUES
+List style issues, naming conventions, code organization
+
+Point out violations of best practices
+
+If no issues, write "Code quality looks good"
+
+PERFORMANCE ISSUES
+List performance bottlenecks
+
+Suggest optimizations
+
+If no issues, write "No performance concerns"
+
+SUGGESTIONS FOR IMPROVEMENT
+List actionable suggestions to improve the code
+
+Include specific examples
+
+IMPROVED CODE
+{language}
+[Provide the complete improved version of the code that fixes all issues. Make sure it's runnable.]

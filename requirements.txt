@@ -1,0 +1,13 @@
+Flask==2.3.3
+Flask-CORS==4.0.0 #Enables Cross-Origin Resource Sharing (CORS).
+python-dotenv==1.0.0 
+requests==2.31.0 #Simple HTTP client for Python.
+pylint==3.0.3 #Static code analyzer.
+bandit==1.7.6 #Security vulnerability scanner for Python code.
+radon==6.0.1 #Measures code complexity.
+tree-sitter==0.20.4 #Fast parser generator for programming languages.
+tree-sitter-languages==1.8.0 #Prebuilt grammars for many programming languages.
+python-magic==0.4.27 #Detects file type from file content.
+pygments==2.17.2 #Syntax highlighting library.
+black==24.1.1 #Opinionated Python code formatter.
+isort==5.13.2 #Automatically sorts Python imports

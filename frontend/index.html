@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Review Agent</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <h1>AI Code Review Agent</h1>
+            </div>
+            <p class="tagline">Intelligent, comprehensive, and lightning-fast code analysis</p>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Panel - Code Input -->
+            <div class="code-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-code"></i> Code Input</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" id="sampleBtn">
+                            <i class="fas fa-file-code"></i> Load Sample
+                        </button>
+                        <button class="btn btn-secondary" id="clearBtn">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <select id="languageSelect">
+                        <option value="auto">🌐 Auto Detect</option>
+                        <option value="python">🐍 Python</option>
+                        <option value="javascript">📘 JavaScript</option>
+                        <option value="typescript">📙 TypeScript</option>
+                        <option value="java">☕ Java</option>
+                        <option value="cpp">⚙️ C++</option>
+                        <option value="c">🔧 C</option>
+                    </select>
+                    
+                    <!-- File Upload -->
+                    <div class="file-upload">
+                        <input type="file" id="fileInput" accept=".py,.js,.ts,.java,.cpp,.c,.txt">
+                        <label for="fileInput" class="btn btn-secondary">
+                            <i class="fas fa-upload"></i> Upload File
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Code Editor -->
+                <div class="code-editor-container">
+                    <textarea id="codeEditor" placeholder="Paste your code here or upload a file..." spellcheck="false"></textarea>
+                    <div class="editor-stats">
+                        <span id="lineCount">Lines: 0</span>
+                        <span id="charCount">Chars: 0</span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="reviewBtn">
+                        <i class="fas fa-search"></i> Review Code
+                    </button>
+                    <button class="btn btn-primary" id="chatBtn">
+                        <i class="fas fa-comments"></i> Chat About Code
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Panel - Results -->
+            <div class="results-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-clipboard-check"></i> Review Results</h2>
+                    <div class="header-actions">
+                        <span class="badge" id="languageBadge">Language: Not detected</span>
+                        <button class="btn btn-secondary" id="exportBtn" disabled>
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="results-tabs">
+                    <button class="tab-btn active" data-tab="overview">
+                        <i class="fas fa-chart-pie"></i> Overview
+                    </button>
+                    <button class="tab-btn" data-tab="bugs">
+                        <i class="fas fa-bug"></i> Bugs <span class="badge" id="bugCount">0</span>
+                    </button>
+                    <button class="tab-btn" data-tab="security">
+                        <i class="fas fa-shield-alt"></i> Security <span class="badge" id="securityCount">0</span>
+                    </button>
+                    <button class="tab-btn" data-tab="quality">
+                        <i class="fas fa-star"></i> Quality <span class="badge" id="qualityCount">0</span>
+                    </button>
+                    <button class="tab-btn" data-tab="improved">
+                        <i class="fas fa-code"></i> Improved Code
+                    </button>
+                    <button class="tab-btn" data-tab="chat">
+                        <i class="fas fa-comments"></i> Chat History
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Overview Tab -->
+                    <div class="tab-pane active" id="overviewTab">
+                        <div class="severity-meter">
+                            <div class="meter-label">
+                                <span>Code Health</span>
+                                <span id="healthScore">0%</span>
+                            </div>
+                            <div class="meter-bar">
+                                <div class="meter-fill" id="healthMeter" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <i class="fas fa-bug"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="statBugs">0</span>
+                                    <span class="stat-label">Bugs</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="statSecurity">0</span>
+                                    <span class="stat-label">Security</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-code-branch"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="statComplexity">0</span>
+                                    <span class="stat-label">Complexity</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-star"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value" id="statQuality">0</span>
+                                    <span class="stat-label">Issues</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="summary-card">
+                            <h3>Executive Summary</h3>
+                            <p id="summaryText">No code reviewed yet. Paste your code and click "Review Code" to get started.</p>
+                        </div>
+                    </div>
+
+                    <!-- Bugs Tab -->
+                    <div class="tab-pane" id="bugsTab">
+                        <div class="issues-list" id="bugsList">
+                            <div class="empty-state">No bugs detected</div>
+                        </div>
+                    </div>
+
+                    <!-- Security Tab -->
+                    <div class="tab-pane" id="securityTab">
+                        <div class="issues-list" id="securityList">
+                            <div class="empty-state">No security issues detected</div>
+                        </div>
+                    </div>
+
+                    <!-- Quality Tab -->
+                    <div class="tab-pane" id="qualityTab">
+                        <div class="issues-list" id="qualityList">
+                            <div class="empty-state">No quality issues detected</div>
+                        </div>
+                    </div>
+
+                    <!-- Improved Code Tab -->
+                    <div class="tab-pane" id="improvedTab">
+                        <div class="code-display">
+                            <pre><code class="hljs" id="improvedCode">// Improved code will appear here</code></pre>
+                            <button class="btn btn-secondary copy-btn" onclick="copyImprovedCode()">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Chat Tab -->
+                    <div class="tab-pane" id="chatTab">
+                        <div class="chat-container">
+                            <div class="chat-messages" id="chatMessages">
+                                <div class="chat-message bot">
+                                    <div class="message-content">
+                                        <i class="fas fa-robot"></i>
+                                        <p>Hi! I'm your AI code assistant. Ask me anything about your code!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" id="chatInput" placeholder="Ask a question about your code...">
+                                <button class="btn btn-primary" id="sendChatBtn">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Analyzing your code...</p>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
